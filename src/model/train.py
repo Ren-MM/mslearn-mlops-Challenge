@@ -22,6 +22,7 @@ def main(args):
     train_model(args.reg_rate, X_train, X_test, y_train, y_test)
 
 
+
 def get_csvs_df(path):
     if not os.path.exists(path):
         raise RuntimeError(f"Cannot use non-existent path provided: {path}")
@@ -34,9 +35,9 @@ def get_csvs_df(path):
 def split_data(df):
     # Define features and target variables as per the notebook
     X = df[['Pregnancies', 'PlasmaGlucose',
-        'DiastolicBloodPressure', 'TricepsThickness',
-        'SerumInsulin', 'BMI',
-        'DiabetesPedigree', 'Age']].values
+            'DiastolicBloodPressure', 'TricepsThickness',
+            'SerumInsulin', 'BMI',
+            'DiabetesPedigree', 'Age']].values
     y = df['Diabetic'].values
 
     # Split the data into training and testing sets with a 30% test size
@@ -62,7 +63,7 @@ def parse_args():
     # add arguments
     parser.add_argument("--training_data", dest='training_data', type=str)
     parser.add_argument("--reg_rate", dest='reg_rate', type=float,
-        default=0.01)
+            default=0.01)
 
     # parse args
     args = parser.parse_args()
