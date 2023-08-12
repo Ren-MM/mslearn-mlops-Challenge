@@ -33,16 +33,18 @@ def get_csvs_df(path):
 
 def split_data(df):
     # Define features and target variables as per the notebook
-    X = df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure', 
-            'TricepsThickness', 'SerumInsulin', 'BMI', 'DiabetesPedigree', 'Age']].values
+    X = df[['Pregnancies', 'PlasmaGlucose',
+        'DiastolicBloodPressure', 'TricepsThickness',
+        'SerumInsulin', 'BMI',
+        'DiabetesPedigree', 'Age']].values
     y = df['Diabetic'].values
-    
+
     # Split the data into training and testing sets with a 30% test size
-    #and a random state of 0 as in the notebook
+    # and a random state of 0 as in the notebook
     X_train, X_test, y_train, y_test = train_test_split(
-    X, y, 
-    test_size=0.30, 
-    random_state=0
+        X, y,
+        test_size=0.30,
+        random_state=0
     )
 
     return X_train, X_test, y_train, y_test
@@ -59,8 +61,8 @@ def parse_args():
 
     # add arguments
     parser.add_argument("--training_data", dest='training_data', type=str)
-    parser.add_argument("--reg_rate", dest='reg_rate', type=float, 
-                            default=0.01)
+    parser.add_argument("--reg_rate", dest='reg_rate', type=float,
+        default=0.01)
 
     # parse args
     args = parser.parse_args()
@@ -84,4 +86,3 @@ if __name__ == "__main__":
     # add space in logs
     print("*" * 60)
     print("\n\n")
-
