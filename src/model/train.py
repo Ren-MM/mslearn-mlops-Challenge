@@ -39,9 +39,12 @@ def split_data(df):
     
     # Split the data into training and testing sets with a 30% test size
     #and a random state of 0 as in the notebook
-    X_train, X_test, y_train, y_test = 
-                                        train_test_split(X, y, test_size=0.30, random_state=0)
-   
+    X_train, X_test, y_train, y_test = train_test_split(
+    X, y, 
+    test_size=0.30, 
+    random_state=0
+    )
+
     return X_train, X_test, y_train, y_test
 
 
