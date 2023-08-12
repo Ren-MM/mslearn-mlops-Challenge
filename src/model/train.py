@@ -9,7 +9,8 @@ from sklearn.model_selection import train_test_split
 
 # define functions
 def main(args):
-    
+
+
     # TO DO: enable autologging
     mlflow.autolog()
 
@@ -63,7 +64,7 @@ def parse_args():
     # add arguments
     parser.add_argument("--training_data", dest='training_data', type=str)
     parser.add_argument("--reg_rate", dest='reg_rate', type=float,
-                default=0.01)
+                        default=0.01)
 
     # parse args
     args = parser.parse_args()
