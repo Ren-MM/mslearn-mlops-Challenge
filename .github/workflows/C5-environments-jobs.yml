@@ -18,7 +18,7 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Trigger Azure ML Job
-      run: az ml job create --file ./src/C5-dev-job.yml --resource-group rg-MLOps-Automation-090823 --workspace-name mlws-MLOps-Automation-090823
+      run: az ml job create --file ./src/C5-dev-job.yml --stream --resource-group rg-MLOps-Automation-090823 --workspace-name mlws-MLOps-Automation-090823
 
   prod-train-job:
     needs: dev-train-job
