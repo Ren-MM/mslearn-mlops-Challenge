@@ -1,0 +1,38 @@
+name: Create endpoint and deploy model jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  endpoint-creation-job:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Online endpoint creation job
+      run: |
+        az ml online-endpoint create --name diabetes-prediction-endpoint -f src/create-endpoint.yml --resource-group rg-MLOps-Automation-090823 --workspace-name mlws-MLOps-Automation-090823
+        
+  model-deployment-job:
+    needs: endpoint-creation-job
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Install az ml extension
+      run: az extension add -n ml -y
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Model deployment job
+      run: |
+        az ml online-deployment create --name diabetes-deployment --endpoint diabetes-prediction-endpoint -f src/C6-model-deployment.yml --all-traffic --resource-group rg-MLOps-Automation-090823 --workspace-name mlws-MLOps-Automation-090823
