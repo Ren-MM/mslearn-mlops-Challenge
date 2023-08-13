@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   dev-train-job:
-    environment: development
+    environment: C5-Development
     runs-on: ubuntu-latest
     steps:
     - name: Check out repo
@@ -22,7 +22,7 @@ jobs:
 
   prod-train-job:
     needs: dev-train-job
-    environment: production
+    environment: C5-Production
     runs-on: ubuntu-latest
     steps:
     - name: Check out repo
